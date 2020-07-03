@@ -1,0 +1,96 @@
+* {
+  /* text-align: center; */
+  font-family: IBMPlexSans, sans-serif;
+  overflow: hidden;
+}
+
+html,
+body {
+  margin: 0%;
+  padding: 0%;
+  border-radius: 4px 4px 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 312px;
+}
+
+.md {
+  background: #fff;
+}
+
+.md > h1 {
+  border-radius: 4px 4px 0 0;
+  font: inherit;
+  display: flex;
+  font-size: 10px;
+  font-weight: bolder;
+  letter-spacing: 0.5px;
+  line-height: 12px;
+  text-transform: uppercase;
+  background-color: #333333;
+  color: #fff;
+  height: 12px;
+  width: 288px;
+  padding: 12px;
+  line-height: 12px;
+  margin: 0%;
+  margin-bottom: 1em;
+}
+
+.md p {
+  margin: 4px 12px 4px 12px;
+  font-family: Noto Sans, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  overflow-wrap: break-word;
+}
+
+pre {
+  background: rgba(238, 238, 238, 0.8) none repeat scroll 0% 0%;
+  display: grid;
+  line-height: 1.4;
+  margin: 4px 12px 4px 12px;
+  max-width: 100%;
+  overflow: auto;
+  padding: 8px;
+}
+
+code {
+  font-family: Noto Mono, Menlo, Monaco, Consolas;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+  background-color: transparent;
+  max-width: 100%;
+  overflow: auto;
+  color: rgb(34, 34, 34);
+  margin: 0px;
+}
+
+a {
+  content: url(%%sg-codeblock%%);
+}
+
+a:before {
+  content: url(%%sg-codeblock%%);
+}
+
+/* Night Mode */
+/* regular: dkRXqa */
+/* night-mode: jGUsGv */
+
+.jGUsGv .md {
+  /* not needed in prod */
+  background-color: #1a1a1b;
+}
+
+.jGUsGv .md > h1 {
+  background-color: rgb(26, 26, 27);
+  color: rgb(129, 131, 132);
+}
+
+.jGUsGv .md p {
+  color: rgb(215, 218, 220);
+}

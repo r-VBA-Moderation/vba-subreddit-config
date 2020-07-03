@@ -1,0 +1,132 @@
+* {
+  text-align: center;
+  font-family: IBMPlexSans, sans-serif;
+  overflow: hidden;
+}
+
+html,
+body {
+  margin: 0%;
+  padding: 0%;
+  font-family: IBMPlexSans, Arial, sans-serif;
+  border-radius: 4px 4px 0 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  max-width: 312px;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+a {
+  color: inherit !important;
+  text-decoration: none;
+}
+
+.md {
+  background: #fff;
+}
+
+.md > h1 {
+  border-radius: 4px 4px 0 0;
+  font: inherit;
+  display: flex;
+  font-size: 10px;
+  font-weight: bolder;
+  letter-spacing: 0.5px;
+  line-height: 12px;
+  text-transform: uppercase;
+  background-color: #333333;
+  color: #fff;
+  height: 12px;
+  width: 288px;
+  padding: 12px;
+  line-height: 12px;
+  margin: 0%;
+  margin-bottom: 1em;
+}
+
+/* accordion */
+ul:hover li:hover blockquote {
+  height: auto;
+  padding: 1em;
+}
+
+ul li blockquote {
+  height: 0;
+  padding: 0;
+  margin: 0;
+}
+
+/* end accordion */
+
+.md > ul {
+  padding: 1em;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.md > ul > li > blockquote > p {
+  border: 1px solid #333333;
+  border-radius: 4px;
+  box-sizing: border-box;
+  text-align: center;
+  text-decoration: none;
+  background-color: transparent;
+  color: #333333;
+  margin: 0 0 4px;
+  padding: 0px 16px;
+  display: block;
+  width: 100%;
+}
+
+.md > ul > li > blockquote > p:hover {
+  background-color: #333333;
+  color: rgb(255, 255, 255);
+}
+
+.md > ul > li > p {
+  border: 1px solid #eb3c00;
+  border-radius: 4px;
+  box-sizing: border-box;
+  text-align: center;
+  text-decoration: none;
+  background-color: #eb3c00;
+  color: rgb(255, 255, 255);
+  display: block;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  line-height: 32px;
+  text-transform: uppercase;
+  padding: 0px 16px;
+  margin: 0 0 4px;
+}
+
+/* Night Mode */
+/* regular: dkRXqa */
+/* night-mode: jGUsGv */
+
+.jGUsGv .md {
+  background-color: #1a1a1b;
+}
+
+.jGUsGv .md > h1 {
+  background-color: rgb(26, 26, 27);
+  color: rgb(129, 131, 132);
+}
+
+.jGUsGv .md p,
+.jGUsGv .md > ul > li > blockquote > p {
+  color: rgb(215, 218, 220);
+  border-color: rgb(215, 218, 220);
+}
+
+.jGUsGv .md > ul > li > blockquote > p:hover {
+  color: rgb(26, 26, 27);
+  border-color: rgb(26, 26, 27);
+  background-color: rgb(215, 218, 220);
+}

@@ -1,0 +1,18 @@
+# If you edit this page, you must [click this link, then click "send"](http://www.reddit.com/message/compose/?to=AutoModerator&subject=vba&message=schedule) to have AutoModerator re-load the schedule from here
+# Keep resending until you get a response - automod is a bit flaky
+---
+# weekly whatcha working on post
+    first: "2018-08-10 00:00"
+    repeat: 1 week
+    sticky: true
+    distinguish: true
+    sticky: 2
+    title: "What have you been working on? (Week of {{date %B %d, %Y}})"
+    text: |
+        Tell /r/vba what you've been working on this week! 
+
+        Use this thread to discuss your recent successes, mistakes, and lessons learnt; whatever you want to share.
+
+        Whether you're here to brag, moan about a client/management or just blow off some steam, let us know what's on your mind!
+
+---

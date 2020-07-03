@@ -1,0 +1,155 @@
+# automod schedule configured at /wiki/automoderator-schedule
+#001 - filter out posts from accounts less than 1 day old - spam prevention
+#type: submission
+#author:
+#account_age: < 1 days
+#action: filter
+#message_subject: "Your /r/{{subreddit}} submission has been removed"
+#message: |
+#Your /r/{{subreddit}} submission has been automatically removed as your account is less than one day old.
+#
+#New accounts account for a lot of the spam posted to this sub. If you believe you should be exempted, please message the mods.
+---
+#002 - domain blacklist
+domain: [analystcave.com]
+action: remove
+message_subject: 'Your /r/{{subreddit}} submission has been removed'
+message: |
+  Your /r/{{subreddit}} submission has been automatically removed as this domain is blacklisted.
+---
+#Rule removed - user complaints of too many prompts#
+#003 prompt op to mark question as solved if they thank a commenter
+
+#moderators_exempt: false
+#type: comment
+#is_edited: false
+#parent_submission:
+#flair_text: ["Unsolved", "Waiting on OP"]
+#body (includes-word): ["thank you", "thanks", "that's it", "that is it", "great job", "how did you find it", "you found it", "that was quick", "kudos", "this is it", "this was it", "that's the one" ]
+#~body (includes-word): ["Solved!", "Solved","Solution Verified"]
+#author:
+#is_submitter: true
+#message_subject: "Is your /r/{{subreddit}} submission solved?"
+#message: |
+#Hello!
+#
+#I noticed you thanked someone in the comments of your post. If you are happy with the answer and haven't already marked your post "Solved", please [visit your post again]({{permalink}}) and reply to the person who gave you an answer, or anywhere in the thread, with the comment "Solution Verified" and your post status will be updated.
+#Thanks.
+---
+#004 set flair to waiting when commenter replies to question
+moderators_exempt: false
+type: comment
+author:
+  is_submitter: false
+parent_submission:
+  flair_text: 'Unsolved'
+  #set_flair:
+  #text: "Waiting on OP"
+  #css_class: "waiting"
+  #template_id: 86152488-9fce-11e8-9c34-0e3d3172c776
+  #overwrite_flair: true
+---
+#005 set flair to waiting when op replies and flair not already solved.
+moderators_exempt: false
+type: comment
+author:
+  is_submitter: true
+~body (includes-word): ['Solved!', 'Solved', 'Solution Verified']
+parent_submission:
+  ~flair_text: 'Solved'
+  flair_text: 'Waiting on OP'
+  #set_flair:
+  #    text: "Unsolved"
+  #    css_class: "unsolved"
+  #    template_id: d857c216-76a3-11e5-9ecf-0ea7f7edc7ed
+  #overwrite_flair: true
+---
+#006 set flair to solved when op replies solved
+moderators_exempt: false
+type: comment
+body (includes-word): ['Solved!', 'Solved', 'Solution Verified']
+author:
+  is_submitter: true
+parent_submission:
+  flair_text: ['Unsolved', 'Waiting on OP']
+  #set_flair:
+  #    text: "Solved"
+  #    css_class: "solved"
+  #    template_id: dbb9c01c-76a3-11e5-a4dd-0e355ac73a6f
+  #overwrite_flair: true
+---
+#007 default new text submissions to unsolved status.
+type: text submission
+author:
+  ~name: 'AutoModerator'
+set_flair:
+  text: 'Unsolved'
+  css_class: 'unsolved'
+  template_id: d857c216-76a3-11e5-9ecf-0ea7f7edc7ed
+message_subject: 'Your /r/{{subreddit}} post has been submitted'
+message: |
+  Hello!
+
+  Thank you for posting to /r/{{subreddit}}! If your post is a question and someone takes the time to reply to you then please thank and upvote them. 
+
+  If your question is answered then please take the time to reply to the person who gave you an answer with the comment "Solution Verified". This will greatly help our contributors to know which posts still require assistance as well as helping other users with the same problem find the answer.
+
+  If your post is **not** a question please choose an appropriate link flair for your post from the available list.
+
+  You can view your post at any time by clicking [here]({{permalink}}).
+---
+#008 sort weekly thread by new
+type: text submission
+author:
+  name: 'AutoModerator'
+title (starts-with): 'What have you been working on?'
+set_suggested_sort: new
+set_flair:
+  text: 'Discussion'
+  css_class: 'discussion'
+  template_id: 93c25d04-9f9b-11e8-9264-0e7ec57aa1f8
+overwrite_flair: true
+---
+#009 Remove posts with "Help me" titles
+type: text submission
+moderators_exempt: false
+title (includes): ['Help']
+action: remove
+comment: |
+  Your post has been removed for containing the word "Help" in the title. Asking for help is assumed if you are asking a question and adds nothing to the description of your issue. 
+
+  Please familiarise yourself with our [Submission Guidelines](https://www.reddit.com/r/vba/wiki/submission_guidelines) and resubmit your post with a more concise title.
+
+  Thank you
+action_reason: title - plea for help
+---
+#010 - check code formatting on new posts & comments
+type: any
+body (includes, regex):
+  - '(^|\n)(Public|Private|Friend|Static)?\s?(Sub|Function)\s([^\s]+)\(*.\)*.'
+~body#2 (includes, regex):
+  - '(^|\n)\ {4}(Public|Private|Friend|Static)?\s?(Sub|Function)\s([^\s]+)\(*.\)*.'
+moderators_exempt: false
+comment: |
+
+  Your VBA code has not not been formatted properly. Please refer to [these instructions](https://www.reddit.com/r/vba/wiki/submission_guidelines#wiki_apply_code_formatting_to_code_snippets) to learn how to correctly format code on Reddit.
+---
+#011 - title length limit of 150 chars
+~title (regex, full-exact): '.{0,150}'
+moderators_exempt: false
+action: remove
+comment: |
+
+  Your post has been removed as your title exceeds the maximum length of 150 characters. 
+
+  Please refer to our [submission guidelines](https://www.reddit.com/r/vba/wiki/submission_guidelines) for information on our title requirements.
+action_reason: title - too long
+---
+#012 - notify if user has formatted code block as individual line code lines
+type: any
+body (includes, regex):
+  - '(^|\n*)`.+`\s+`.+`'
+moderators_exempt: false
+comment: |
+
+  It looks like you're trying to share a code block but you've formatted it as Inline Code. Please refer to [these instructions](https://www.reddit.com/r/vba/wiki/submission_guidelines#wiki_apply_code_formatting_to_code_snippets) to learn how to correctly format code blocks on Reddit.
