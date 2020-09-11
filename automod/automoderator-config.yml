@@ -11,11 +11,11 @@
 #New accounts account for a lot of the spam posted to this sub. If you believe you should be exempted, please message the mods.
 ---
 #002 - domain blacklist
-domain: [analystcave.com]
-action: remove
-message_subject: 'Your /r/{{subreddit}} submission has been removed'
-message: |
-  Your /r/{{subreddit}} submission has been automatically removed as this domain is blacklisted.
+#domain: [analystcave.com]
+#action: remove
+#message_subject: 'Your /r/{{subreddit}} submission has been removed'
+#message: |
+#  Your /r/{{subreddit}} submission has been automatically removed as this domain is blacklisted.
 ---
 #Rule removed - user complaints of too many prompts#
 #003 prompt op to mark question as solved if they thank a commenter
@@ -128,11 +128,12 @@ type: any
 body (includes, regex):
   - '(^|\n)(Public|Private|Friend|Static)?\s?(Sub|Function)\s([^\s]+)\(*.\)*.'
 ~body#2 (includes, regex):
-  - '(^|\n)\ {4}(Public|Private|Friend|Static)?\s?(Sub|Function)\s([^\s]+)\(*.\)*.'
+  - '(^|\n)(\s{4}|\t)(Public|Private|Friend|Static)?\s?(Sub|Function)\s([^\s]+)\(*.\)*.'
 moderators_exempt: false
 comment: |
 
   Your VBA code has not not been formatted properly. Please refer to [these instructions](https://www.reddit.com/r/vba/wiki/submission_guidelines#wiki_apply_code_formatting_to_code_snippets) to learn how to correctly format code on Reddit.
+
 ---
 #011 - title length limit of 150 chars
 ~title (regex, full-exact): '.{0,150}'
@@ -144,6 +145,7 @@ comment: |
 
   Please refer to our [submission guidelines](https://www.reddit.com/r/vba/wiki/submission_guidelines) for information on our title requirements.
 action_reason: title - too long
+
 ---
 #012 - notify if user has formatted code block as individual line code lines
 type: any
@@ -153,3 +155,43 @@ moderators_exempt: false
 comment: |
 
   It looks like you're trying to share a code block but you've formatted it as Inline Code. Please refer to [these instructions](https://www.reddit.com/r/vba/wiki/submission_guidelines#wiki_apply_code_formatting_to_code_snippets) to learn how to correctly format code blocks on Reddit.
+---
+#012 Remove ZavraD self promotion of vbaexpress
+#type: comment
+#author:
+    #name (includes): "ZavraD"
+#body (includes, regex): ["vbaexpress.com"]
+#action: remove
+
+---
+    # Switch to solved flair on Clippy response
+    type: comment
+    priority: 99
+    author:
+        is_submitter: false
+        name: "Clippy_Office_Asst"
+    body (starts-with): "You have awarded 1 point to "
+    is_top_level: false        # Should only activate for replies, not top levels
+    moderators_exempt: false
+    parent_submission:
+        flair_template_id:
+            - d857c216-76a3-11e5-9ecf-0ea7f7edc7ed    # Unsolved
+            - 86152488-9fce-11e8-9c34-0e3d3172c776    # Waiting on OP
+        overwrite_flair: true 
+        set_flair:         
+            template_id: dbb9c01c-76a3-11e5-a4dd-0e355ac73a6f
+            css_class: solved
+            
+---
+  # 014 - Notify when curly quotes used within code
+  type: any
+  body (includes, regex):
+      - (?:.*`(?=.*`)|(?:^|\n*)\s{4}).*([\u2018\u2019\u201C\u201D])
+  moderators_exempt: False
+  comment: "Hi u/{{author}},\n
+
+  It looks like you've submitted code containing curly/smart quotes e.g. `“...”` or `‘...’`.  \n
+
+  Users often report problems using these characters within a code editor. If you're writing code, you probably meant to use `\"...\"` or `'...'`. \n
+
+  If there are issues running this code, that may be the reason. Just a heads-up!"
