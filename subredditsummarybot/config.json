@@ -1,0 +1,29 @@
+{
+  "subreddits": [
+    {
+      "subreddit": "vba",
+      "day_to_post": "saturday",
+      "days_to_recap": 7,
+      "type": "submission",
+      "submission_title": "This Week's /r/VBA Recap",
+      "submission_time": 12,
+      "separate_by_day": false,
+      "matchers": [
+        {
+          "upvotes": 1,
+          "limit": 5,
+          "display_name": "Top 5 Posts",
+          "sort": "upvotes",
+          "type": "post"
+        },
+        {
+          "upvotes": 1,
+          "limit": 5,
+          "display_name": "Top 5 Comments",
+          "sort": "upvotes",
+          "type": "comment"
+        }
+      ]
+    }
+  ]
+}
