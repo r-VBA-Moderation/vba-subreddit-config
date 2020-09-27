@@ -133,7 +133,6 @@ moderators_exempt: false
 comment: |
 
   Your VBA code has not not been formatted properly. Please refer to [these instructions](https://www.reddit.com/r/vba/wiki/submission_guidelines#wiki_apply_code_formatting_to_code_snippets) to learn how to correctly format code on Reddit.
-
 ---
 #011 - title length limit of 150 chars
 ~title (regex, full-exact): '.{0,150}'
@@ -145,7 +144,6 @@ comment: |
 
   Please refer to our [submission guidelines](https://www.reddit.com/r/vba/wiki/submission_guidelines) for information on our title requirements.
 action_reason: title - too long
-
 ---
 #012 - notify if user has formatted code block as individual line code lines
 type: any
@@ -186,7 +184,7 @@ comment: |
   # 014 - Notify when curly quotes used within code
   type: any
   body (includes, regex):
-      - (?:.*`(?=.*`)|(?:^|\n*)\s{4}).*([\u2018\u2019\u201C\u201D])
+      - ".*`.*([\u2018\u2019\u201C\u201D])+.*`|(?:^|\n)(?: {4}|\t).*([\u2018\u2019\u201C\u201D])"
   moderators_exempt: False
   comment: "Hi u/{{author}},\n
 
@@ -195,3 +193,15 @@ comment: |
   Users often report problems using these characters within a code editor. If you're writing code, you probably meant to use `\"...\"` or `'...'`. \n
 
   If there are issues running this code, that may be the reason. Just a heads-up!"
+
+---
+  #015 set flair for subredditsummarybot recaps
+  type: text submission
+  author:
+    name: 'subredditsummarybot'
+  title (starts-with): 'This Week'
+  set_flair:
+    text: 'Weekly Recap'
+    css_class: 'recap'
+    template_id: 3024875c-00bc-11eb-8e2e-0e6580a4d755
+  overwrite_flair: true
