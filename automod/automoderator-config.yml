@@ -194,14 +194,34 @@ comment: |
 
   If there are issues running this code, that may be the reason. Just a heads-up!"
 
+
 ---
-  #015 set flair for subredditsummarybot recaps
-  type: text submission
-  author:
-    name: 'subredditsummarybot'
-  title (starts-with): 'This Week'
-  set_flair:
-    text: 'Weekly Recap'
-    css_class: 'recap'
-    template_id: 3024875c-00bc-11eb-8e2e-0e6580a4d755
-  overwrite_flair: true
+#000 Remove poor titles.
+#     The intent of this rule is to catch titles with elements that don't add
+#     anything of value to the title. This expands on the original "help" rule
+#     by extending the words and phrases that are often seen in poor titles.
+#     Simple list of words at until we find a use case for regex.
+type: text submission
+moderators_exempt: false
+flair_text: 'Unsolved'
+title:
+  - "vba"
+  - "code"          # Found one legit use case - Code only works in debug
+  - "macro"         # Found one legit use case - [POWERPOINT] How to initiate a macro via a key press without ActiveX buttons?
+  - "noob"
+  - "newbie"
+  - "question"
+  - "need"
+  - "want"
+  - "how"
+  - "homework"
+  - "doesn't work"
+  - "is it possible"
+action: remove
+comment: |
+  Your post has been removed for containing the word(s) "{{match}}" in the title. This rule was created in the interests of keeping submission quality high while keeping moderator workload at a minimum.
+
+  Please familiarise yourself with our [Submission Guidelines](https://www.reddit.com/r/vba/wiki/submission_guidelines) and resubmit your post with a more concise title.
+
+  If you believe your title is of high quality, please contact the mods so that we may review for false positives.
+action_reason: title - low quality word

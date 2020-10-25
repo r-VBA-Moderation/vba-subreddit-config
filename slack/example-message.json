@@ -1,12 +1,12 @@
-{
-    "type": "mrkdwn",
-    "text": "```Public Sub HelloWorld()\n    Debug.Print \"Hello, World!\"\nEnd Sub```"
-}
-
-{
-    "type": "mrkdwn",
-    "text": "```Public Sub HelloWorld()\n    Debug.Print \"Hello, World!\"\nEnd Sub```",
-    "channel": "#modq",
-    "icon_emoji": ":clippy:"
-}
-'
+[
+    {
+        "type": "mrkdwn",
+        "text": "```Public Sub HelloWorld()\n    Debug.Print \"Hello, World!\"\nEnd Sub```"
+    },
+    {
+        "type": "mrkdwn",
+        "text": "```Public Sub HelloWorld()\n    Debug.Print \"Hello, World!\"\nEnd Sub```",
+        "channel": "#modq",
+        "icon_emoji": ":clippy:"
+    }
+]
