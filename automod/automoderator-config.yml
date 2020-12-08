@@ -42,12 +42,11 @@ type: comment
 author:
   is_submitter: false
 parent_submission:
-  flair_text: 'Unsolved'
-  #set_flair:
-  #text: "Waiting on OP"
-  #css_class: "waiting"
-  #template_id: 86152488-9fce-11e8-9c34-0e3d3172c776
-  #overwrite_flair: true
+  flair_css_class: 'unsolved1'
+  set_flair:
+      flair_css_class (full-exact): "waitingonop"
+      template_id: 5c368908-16a1-11eb-8d40-0e31533bf51d # Waiting on OP
+  overwrite_flair: true
 ---
 #005 set flair to waiting when op replies and flair not already solved.
 moderators_exempt: false
@@ -57,26 +56,29 @@ author:
 ~body (includes-word): ['Solved!', 'Solved', 'Solution Verified']
 parent_submission:
   ~flair_text: 'Solved'
-  flair_text: 'Waiting on OP'
+  flair_text: ['Unsolved', 'Waiting on OP']
   #set_flair:
   #    text: "Unsolved"
   #    css_class: "unsolved"
   #    template_id: d857c216-76a3-11e5-9ecf-0ea7f7edc7ed
   #overwrite_flair: true
 ---
-#006 set flair to solved when op replies solved
-moderators_exempt: false
+#006 set flair to unsovled from waiting on op
+# Switch from unsolved1 to unsolved, so exempt from Automod second scan
 type: comment
-body (includes-word): ['Solved!', 'Solved', 'Solution Verified']
+is_top_level: false        # Should only activate for replies, not top levels
+moderators_exempt: false
 author:
-  is_submitter: true
+    is_submitter: true
+    ~name: AutoModerator
+action_reason: "006 - Changed flair to Waiting"
 parent_submission:
-  flair_text: ['Unsolved', 'Waiting on OP']
-  #set_flair:
-  #    text: "Solved"
-  #    css_class: "solved"
-  #    template_id: dbb9c01c-76a3-11e5-a4dd-0e355ac73a6f
-  #overwrite_flair: true
+    flair_template_id: 5c368908-16a1-11eb-8d40-0e31533bf51d    # Waiting on OP
+    set_flair: 
+        css_class: "unsolved"
+        template_id: d857c216-76a3-11e5-9ecf-0ea7f7edc7ed    # Unsolved
+    overwrite_flair: true
+
 ---
 #007 default new text submissions to unsolved status.
 type: text submission
@@ -84,17 +86,21 @@ author:
   ~name: 'AutoModerator'
 set_flair:
   text: 'Unsolved'
-  css_class: 'unsolved'
-  template_id: d857c216-76a3-11e5-9ecf-0ea7f7edc7ed
+  css_class: 'unsolved1'
+  template_id: d857c216-76a3-11e5-9ecf-0ea7f7edc7ed                ## unsolved1'
 message_subject: 'Your /r/{{subreddit}} post has been submitted'
 message: |
   Hello!
 
-  Thank you for posting to /r/{{subreddit}}! If your post is a question and someone takes the time to reply to you then please thank and upvote them. 
+  Thank you for posting to /r/{{subreddit}}! 
 
-  If your question is answered then please take the time to reply to the person who gave you an answer with the comment "Solution Verified". This will greatly help our contributors to know which posts still require assistance as well as helping other users with the same problem find the answer.
+  If you have not already done so, please read our [submission guidelines](https://www.reddit.com/r/vba/wiki/submission_guidelines). Posts which do not satisfy these guidelines may be removed.
+
+  If your post is a question and someone takes the time to reply to you then please thank and upvote them. When your question is answered then please take the time to reply to the person who gave you an answer with the comment "Solution Verified". This will greatly help our contributors to know which posts still require assistance as well as helping other users with the same problem find the answer.
 
   If your post is **not** a question please choose an appropriate link flair for your post from the available list.
+
+  If you are new to VBA and are looking to learn, please check out our [Resources](https://www.reddit.com/r/vba/wiki/resources) page which lists a bunch of learning and reference material, useful extensions and related communities. If you have a resource you think should be considered for addition to the list, please suggest it in this thread or [contact the mods](https://www.reddit.com/message/compose/?to=/r/vba).
 
   You can view your post at any time by clicking [here]({{permalink}}).
 ---
@@ -184,7 +190,7 @@ comment: |
   # 014 - Notify when curly quotes used within code
   type: any
   body (includes, regex):
-      - ".*`.*([\u2018\u2019\u201C\u201D])+.*`|(?:^|\n)(?: {4}|\t).*([\u2018\u2019\u201C\u201D])"
+      - ".*`.*(?:[\u2018\u2019\u201C\u201D])+.*`|(?:^|\n)(?: {4}|\t)[^\n]+(?:[\u2018\u2019\u201C\u201D])"
   moderators_exempt: False
   comment: "Hi u/{{author}},\n
 
@@ -194,34 +200,14 @@ comment: |
 
   If there are issues running this code, that may be the reason. Just a heads-up!"
 
-
 ---
-#000 Remove poor titles.
-#     The intent of this rule is to catch titles with elements that don't add
-#     anything of value to the title. This expands on the original "help" rule
-#     by extending the words and phrases that are often seen in poor titles.
-#     Simple list of words at until we find a use case for regex.
-type: text submission
-moderators_exempt: false
-flair_text: 'Unsolved'
-title:
-  - "vba"
-  - "code"          # Found one legit use case - Code only works in debug
-  - "macro"         # Found one legit use case - [POWERPOINT] How to initiate a macro via a key press without ActiveX buttons?
-  - "noob"
-  - "newbie"
-  - "question"
-  - "need"
-  - "want"
-  - "how"
-  - "homework"
-  - "doesn't work"
-  - "is it possible"
-action: remove
-comment: |
-  Your post has been removed for containing the word(s) "{{match}}" in the title. This rule was created in the interests of keeping submission quality high while keeping moderator workload at a minimum.
-
-  Please familiarise yourself with our [Submission Guidelines](https://www.reddit.com/r/vba/wiki/submission_guidelines) and resubmit your post with a more concise title.
-
-  If you believe your title is of high quality, please contact the mods so that we may review for false positives.
-action_reason: title - low quality word
+  #015 set flair for subredditsummarybot recaps
+  type: text submission
+  author:
+    name: 'subredditsummarybot'
+  title (starts-with): 'This Week'
+  set_flair:
+    text: 'Weekly Recap'
+    css_class: 'recap'
+    template_id: 3024875c-00bc-11eb-8e2e-0e6580a4d755
+  overwrite_flair: true
