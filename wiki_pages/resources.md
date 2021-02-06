@@ -18,15 +18,20 @@
  * [u/AutomateExcel 's Free Interactive VBA tutorial](https://www.automateexcel.com/learn-vba-tutorial/) (requires registration to save progress)
  * [Home &amp; Learn - Excel VBA For Complete Beginners](http://www.homeandlearn.org/)
 
-####Video Tutorials
+#### Video Tutorials
 * [WiseOwlTutorials Excel VBA Introduction (YouTube playlist)](https://www.youtube.com/playlist?list=PLNIs-AWhQzckr8Dgmgb3akx_gFMnpxTN5)
 
-###Books
+### Books
  * Excel VBA Programming For Dummies - John Walkenbach ([Amazon US](https://www.amazon.com/Excel-Programming-Dummies-John-Walkenbach/dp/1119077397/)/[Amazon UK](https://www.amazon.co.uk/Excel-VBA-Programming-Dummies-4th/dp/1119077397/)/[Google Books](https://books.google.co.uk/books/about/Excel_VBA_Programming_For_Dummies.html?id=1dwqBwAAQBAJ))
 
 #### Free e-Books
  * [VBA Notes for Professionals book](https://goalkicker.com/VBABook/)
  * [Excel® VBA Notes for Professionals book](https://goalkicker.com/ExcelVBABook/) 
+
+
+### Blogs
+ * [No Longer Set - Mike Wolfe](https://nolongerset.com/)
+ * [Rubberduck Blog - Mathieu Guindon](https://rubberduckvba.wordpress.com)
 
 
 ## Useful [FOSS](https://en.wikipedia.org/wiki/Free_and_open-source_software) add-ins, extensions and repositories.
