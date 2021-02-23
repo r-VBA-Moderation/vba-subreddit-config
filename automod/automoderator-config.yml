@@ -117,7 +117,7 @@ set_flair:
 overwrite_flair: true
 ---
 #009 Remove posts with "Help me" titles
-type: text submission
+type: submission
 moderators_exempt: false
 title (includes): ['Help']
 action: remove
