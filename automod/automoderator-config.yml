@@ -211,3 +211,10 @@ comment: |
     css_class: 'recap'
     template_id: 3024875c-00bc-11eb-8e2e-0e6580a4d755
   overwrite_flair: true
+
+---
+  # 016 - Shadow ban
+  type: any
+  author: BittenOnceThrowAway
+  action: remove
+  action_reason: "016 - Shadowban"
